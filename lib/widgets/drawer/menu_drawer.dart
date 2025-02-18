@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline_map/pages/bundled_offline_map.dart';
+import 'package:flutter_offline_map/pages/download_offline_map.dart';
 import 'package:flutter_offline_map/pages/home.dart';
 import 'package:flutter_offline_map/widgets/drawer/menu_item.dart';
 
@@ -53,6 +54,11 @@ class MenuDrawer extends StatelessWidget {
           MenuItemWidget(
             caption: 'Bundled Offline Map',
             routeName: BundledOfflineMapPage.route,
+            currentRoute: currentRoute,
+          ),
+          MenuItemWidget(
+            caption: 'Download Offline Map',
+            routeName: DownloadOfflineMap.route,
             currentRoute: currentRoute,
           ),
         ],

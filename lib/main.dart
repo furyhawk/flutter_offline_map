@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline_map/pages/home.dart';
 import 'package:flutter_offline_map/pages/bundled_offline_map.dart';
+import 'package:flutter_offline_map/pages/download_offline_map.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MainApp extends StatelessWidget {
       home: const HomePage(),
       routes: <String, WidgetBuilder>{
         BundledOfflineMapPage.route: (context) => const BundledOfflineMapPage(),
+        DownloadOfflineMap.route: (context) => const DownloadOfflineMap(),
       },
     );
   }
