@@ -7,10 +7,14 @@ import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_stor
 
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cache/flutter_map_cache.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:latlong2/latlong.dart';
 
 import 'package:flutter_offline_map/widgets/drawer/menu_drawer.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:flutter_offline_map/misc/utils.dart';
+
+final logger = Logger(
+  printer: PrettyPrinter(),
+);
 
 class DownloadOfflineMap extends StatefulWidget {
   static const String route = '/download_offline_map';
@@ -23,12 +27,12 @@ class DownloadOfflineMap extends StatefulWidget {
 class _DownloadOfflineMapState extends State<DownloadOfflineMap> {
   // create the cache store as a field variable
   final Future<CacheStore> _cacheStoreFuture = _getCacheStore();
-  var logger=Logger();
 
   /// Get the CacheStore as a Future. This method needs to be static so that it
   /// can be used to initialize a field variable.
   static Future<CacheStore> _getCacheStore() async {
-    final dir = await getTemporaryDirectory();
+    final dir = await getLocalPath();
+    logger.d('dir: $dir.path');
     // Note, that Platform.pathSeparator from dart:io does not work on web,
     // import it from dart:html instead.
     return FileCacheStore('${dir.path}${Platform.pathSeparator}MapTiles');
