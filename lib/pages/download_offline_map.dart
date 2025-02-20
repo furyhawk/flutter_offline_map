@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:logger/logger.dart';
+import 'package:logging/logging.dart';
 
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
@@ -12,9 +12,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:flutter_offline_map/widgets/drawer/menu_drawer.dart';
 import 'package:flutter_offline_map/misc/utils.dart';
 
-final logger = Logger(
-  printer: PrettyPrinter(),
-);
+final log = Logger('download_offline_map');
 
 class DownloadOfflineMap extends StatefulWidget {
   static const String route = '/download_offline_map';
@@ -32,7 +30,7 @@ class _DownloadOfflineMapState extends State<DownloadOfflineMap> {
   /// can be used to initialize a field variable.
   static Future<CacheStore> _getCacheStore() async {
     final dir = await getLocalPath();
-    logger.d('dir: $dir.path');
+    log.fine('dir: $dir.path');
     // Note, that Platform.pathSeparator from dart:io does not work on web,
     // import it from dart:html instead.
     return FileCacheStore('${dir.path}${Platform.pathSeparator}MapTiles');
@@ -45,7 +43,7 @@ class _DownloadOfflineMapState extends State<DownloadOfflineMap> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final cacheStore = snapshot.data!;
-          logger.d(Platform.operatingSystem);
+          log.fine(Platform.operatingSystem);
           return Scaffold(
             appBar: AppBar(title: const Text('Download Offline Map')),
             drawer: const MenuDrawer(DownloadOfflineMap.route),
@@ -56,8 +54,8 @@ class _DownloadOfflineMapState extends State<DownloadOfflineMap> {
                 maxZoom: 17,
                 cameraConstraint: CameraConstraint.containCenter(
                   bounds: LatLngBounds(
-                    const LatLng(1.33327, 103.931959),
-                    const LatLng(1.21027, 103.801959),
+                    const LatLng(1.43327, 104.931959),
+                    const LatLng(1.11027, 102.801959),
                   ),
                 ),
               ),
