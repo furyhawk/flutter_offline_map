@@ -51,7 +51,7 @@ class _DownloadOfflineMapState extends State<DownloadOfflineMap> {
               options: MapOptions(
                 initialCenter: const LatLng(1.29027, 103.851959),
                 minZoom: 12,
-                maxZoom: 17,
+                maxZoom: 20,
                 cameraConstraint: CameraConstraint.containCenter(
                   bounds: LatLngBounds(
                     const LatLng(1.43327, 104.931959),
